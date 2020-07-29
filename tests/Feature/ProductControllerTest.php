@@ -4,8 +4,9 @@ namespace Tests\Feature;
 
 use App\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
-
+use App\User;
 class ProductControllerTest extends TestCase
 {
     use RefreshDatabase;
@@ -13,6 +14,8 @@ class ProductControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+
+        Sanctum::actingAs(factory(User::class)->create());
     }
 
     public function test_index()
